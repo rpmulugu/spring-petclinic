@@ -19,6 +19,9 @@ package org.springframework.samples.petclinic;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * PetClinic Spring Boot Application.
  *
@@ -29,7 +32,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class PetClinicApplication {
 
     public static void main(String[] args) {
+    	final Logger logger = LoggerFactory.getLogger(PetClinicApplication.class);
         SpringApplication.run(PetClinicApplication.class, args);
+        logger.info("--Petclinic Application Started--");
     }
 
 }

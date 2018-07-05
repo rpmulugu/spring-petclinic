@@ -15,12 +15,16 @@
  */
 package org.springframework.samples.petclinic.owner;
 
+import org.springframework.samples.petclinic.PetClinicApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.validation.Valid;
 import java.util.Collection;
@@ -37,6 +41,8 @@ class PetController {
     private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = "pets/createOrUpdatePetForm";
     private final PetRepository pets;
     private final OwnerRepository owners;
+    
+	final Logger logger = LoggerFactory.getLogger(PetClinicApplication.class);
 
     public PetController(PetRepository pets, OwnerRepository owners) {
         this.pets = pets;
@@ -82,6 +88,7 @@ class PetController {
             return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
         } else {
             this.pets.save(pet);
+            logger.info("Pet " + pet.getName() + " of type " + pet.getType() + " is added to Petclinic. " + "His owner " + owner.getFirstName() + " " + owner.getLastName() + " is resident of " + owner.getAddress() + " and his mobile number is: " + owner.getTelephone() + ".");
             return "redirect:/owners/{ownerId}";
         }
     }

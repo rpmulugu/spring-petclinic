@@ -15,6 +15,7 @@
  */
 package org.springframework.samples.petclinic.owner;
 
+import org.springframework.samples.petclinic.PetClinicApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,6 +25,9 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.validation.Valid;
 import java.util.Collection;
@@ -40,6 +44,8 @@ class OwnerController {
 
     private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
     private final OwnerRepository owners;
+    
+	final Logger logger = LoggerFactory.getLogger(PetClinicApplication.class);
 
 
     public OwnerController(OwnerRepository clinicService) {
@@ -64,6 +70,7 @@ class OwnerController {
             return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
         } else {
             this.owners.save(owner);
+            logger.info(owner.getFirstName() + " " + owner.getLastName() + " is added to Petclinic. " + owner.getFirstName() + " is resident of " + owner.getAddress() + ", " + owner.getCity() + " and his mobile number is: " + owner.getTelephone() + ".");
             return "redirect:/owners/" + owner.getId();
         }
     }
@@ -113,6 +120,7 @@ class OwnerController {
         } else {
             owner.setId(ownerId);
             this.owners.save(owner);
+            logger.info(owner.getFirstName() + " " + owner.getLastName() + " details are updated successfully. " + owner.getFirstName() + " is resident of " + owner.getAddress() + ", " + owner.getCity() + " and his mobile number is: " + owner.getTelephone() + ".");
             return "redirect:/owners/{ownerId}";
         }
     }
