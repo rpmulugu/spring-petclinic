@@ -88,7 +88,7 @@ class PetController {
             return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
         } else {
             this.pets.save(pet);
-            logger.info("Pet " + pet.getName() + " of type " + pet.getType() + " is added to Petclinic. " + "His owner " + owner.getFirstName() + " " + owner.getLastName() + " is resident of " + owner.getAddress() + " and his mobile number is: " + owner.getTelephone() + ".");
+            logger.info("Pet added: " + pet.getName() + " of type " + pet.getType() + " is added to Petclinic. " + "This pet belongs to " + owner.getFirstName() + " " + owner.getLastName() + ".");
             return "redirect:/owners/{ownerId}";
         }
     }
@@ -109,6 +109,7 @@ class PetController {
         } else {
             owner.addPet(pet);
             this.pets.save(pet);
+            logger.info("Pet details updated : Details of " + pet.getName() + " of type " + pet.getType() + " is updated in Petclinic. " + "This pet belongs to " + owner.getFirstName() + " " + owner.getLastName() + ".");
             return "redirect:/owners/{ownerId}";
         }
     }

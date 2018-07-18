@@ -70,7 +70,7 @@ class OwnerController {
             return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
         } else {
             this.owners.save(owner);
-            logger.info(owner.getFirstName() + " " + owner.getLastName() + " is added to Petclinic. " + owner.getFirstName() + " is resident of " + owner.getAddress() + ", " + owner.getCity() + " and his mobile number is: " + owner.getTelephone() + ".");
+            logger.info("Owner added: " + owner.getFirstName() + " " + owner.getLastName() + " is added to Petclinic. " + owner.getFirstName() + " is resident of " + owner.getAddress() + ", " + owner.getCity() + " and his/her mobile number is: " + owner.getTelephone() + ".");
             return "redirect:/owners/" + owner.getId();
         }
     }
@@ -120,7 +120,7 @@ class OwnerController {
         } else {
             owner.setId(ownerId);
             this.owners.save(owner);
-            logger.info(owner.getFirstName() + " " + owner.getLastName() + " details are updated successfully. " + owner.getFirstName() + " is resident of " + owner.getAddress() + ", " + owner.getCity() + " and his mobile number is: " + owner.getTelephone() + ".");
+            logger.info("Owner details updated: " + owner.getFirstName() + " " + owner.getLastName() + " details are updated successfully. " + owner.getFirstName() + " is resident of " + owner.getAddress() + ", " + owner.getCity() + " and his/her mobile number is: " + owner.getTelephone() + ".");
             return "redirect:/owners/{ownerId}";
         }
     }
