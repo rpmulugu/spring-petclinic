@@ -33,6 +33,7 @@ public class PetClinicApplication {
 
     public static void main(String[] args) {
     	final Logger logger = LoggerFactory.getLogger(PetClinicApplication.class);
+        System.setProperty("server.servlet.context-path", "/petclinic");
         SpringApplication.run(PetClinicApplication.class, args);
         logger.info("--Petclinic Application Started--");
     }
